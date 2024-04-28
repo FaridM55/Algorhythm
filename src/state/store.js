@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import api from '../services/api';
 import { ENV } from '../utils/config';
 import auth from './authSlice';
@@ -12,7 +13,7 @@ const reducers = combineReducers({
 const persistedReducer = persistReducer(
   {
     key: 'root',
-    storage: localStorage,
+    storage,
     whitelist: [],
   },
   reducers,
