@@ -29,11 +29,23 @@ const authService = api.injectEndpoints({
         method: 'GET',
       }),
     }),
+    verify: builder.mutation({
+      query: (body) => ({
+        url: '/auth/verification/verify',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
   overrideExisting: true,
 });
 
-export const { useLoginMutation, useRegisterMutation, useResetMutation, useUserQuery } =
-  authService;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useResetMutation,
+  useUserQuery,
+  useVerifyMutation,
+} = authService;
 
 export default authService;
