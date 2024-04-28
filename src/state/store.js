@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import api from '../services/api';
+import { ENV } from '../utils/config';
 import auth from './authSlice';
 
 const reducers = combineReducers({
@@ -23,6 +24,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }).concat(api.middleware),
+  devTools: ENV,
 });
 
 const persistor = persistStore(store);
