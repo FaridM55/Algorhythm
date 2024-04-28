@@ -36,7 +36,7 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(api.middleware),
-  devTools: ENV,
+  devTools: ENV === 'development',
 });
 
 const persistor = persistStore(store);
