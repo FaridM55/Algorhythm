@@ -57,3 +57,5 @@ const algorithmService = api.injectEndpoints({
 });
 
 export const { useGetAlgorithmsQuery } = algorithmService;
+
+export default algorithmService;
