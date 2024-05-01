@@ -8,6 +8,7 @@ const authService = api.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['USER'],
     }),
     register: builder.mutation({
       query: (body) => ({

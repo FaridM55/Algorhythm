@@ -1,0 +1,102 @@
+a {
+  text-decoration: none;
+}
+
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bg {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.title {
+  font-weight: 700;
+  margin-top: 10%;
+}
+
+.info-card {
+  background: rgb(10, 6, 87);
+  background: linear-gradient(
+    90deg,
+    rgba(10, 6, 87, 1) 0%,
+    rgba(51, 51, 125, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  h2 {
+    font-weight: 700;
+  }
+  p {
+    white-space: 'pre-line';
+  }
+}
+
+.sign-page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+  .form {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .bg-image {
+    flex: 1;
+    background-image: url('../images/login_pic.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @media screen and (max-width: 768px) {
+    .form {
+      width: 100%;
+    }
+
+    .bg-image {
+      display: none;
+    }
+  }
+}
+
+.game-card {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+}
+
+textarea {
+  resize: none;
+}

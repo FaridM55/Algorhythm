@@ -25,10 +25,10 @@ const algorithmService = api.injectEndpoints({
     }),
 
     algorithmSubmit: build.mutation({
-      query: ({ id, body }) => ({
-        url: `/algorithms/${id}/submit`,
+      query: ({ id, ...body }) => ({
+        url: `/algorithms/${id}/submit?programmingLanguages=${body?.programmingLanguages}&solutionCode=${body?.solutionCode}`,
         method: 'POST',
-        body,
+        // body,
       }),
     }),
 
@@ -56,6 +56,14 @@ const algorithmService = api.injectEndpoints({
   overrideExisting: true,
 });
 
-export const { useGetAlgorithmsQuery } = algorithmService;
+export const {
+  useGetAlgorithmsQuery,
+  useCreateaAlgorithmMutation,
+  useAlgorithmAddTestCaseMutation,
+  useAlgorithmSubmitMutation,
+  useDeleteAlgorithmMutation,
+  useGetAlgorithmQuery,
+  useUpdateAlgorithmMutation,
+} = algorithmService;
 
 export default algorithmService;
