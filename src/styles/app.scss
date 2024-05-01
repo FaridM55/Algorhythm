@@ -34,6 +34,10 @@ body {
 }
 
 .info-card {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: rgb(10, 6, 87);
   background: linear-gradient(
     90deg,
