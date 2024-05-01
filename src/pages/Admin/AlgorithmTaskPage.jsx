@@ -1,5 +1,4 @@
 import { Card, FormControl, TextField, Typography } from '@mui/material';
-import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -64,6 +63,16 @@ const AlgorithmTaskPage = () => {
               </FormControl>
             </div>
             <div className='mt-3'>
+              <FormControl fullWidth>
+                <TextField
+                  label='Test'
+                  variant='outlined'
+                  value={form.testCase}
+                  onChange={(e) => setForm({ ...form, testCase: e.target.value })}
+                />
+              </FormControl>
+            </div>
+            {/* <div className='mt-3'>
               <Typography>Test</Typography>
               <FormControl fullWidth>
                 <Editor
@@ -103,7 +112,7 @@ const AlgorithmTaskPage = () => {
                   }}
                 />
               </FormControl>
-            </div>
+            </div> */}
             {/* <TextField
             label='Tədris'
             variant='outlined'
