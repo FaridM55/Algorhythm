@@ -10,7 +10,7 @@ const Navbar = ({ active }) => {
 
   const isAdmin = useMemo(() => {
     if (user) {
-      return user?.roleName?.find((role) => role === 'ADMIN');
+      return user?.roleName?.find((role) => role === 'ADMIN') || false;
     } else {
       return false;
     }
