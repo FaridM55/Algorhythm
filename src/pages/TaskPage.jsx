@@ -64,7 +64,7 @@ const TaskPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-    submit({ programmingLanguages: language, solutionCode: input, id });
+    submit({ programmingLanguages: language, solutionCode: String(input), id });
   };
 
   useEffect(() => {

@@ -26,11 +26,14 @@ const algorithmService = api.injectEndpoints({
     }),
 
     algorithmSubmit: build.mutation({
-      query: ({ id, ...body }) => ({
-        url: `/algorithms/${id}/submit?programmingLanguages=${body?.programmingLanguages}&solutionCode=${body?.solutionCode}`,
-        method: 'POST',
-        // body,
-      }),
+      query: ({ id, ...body }) => {
+        console.log(new URLSearchParams(body).toString());
+        return {
+          url: `/algorithms/${id}/submit?${new URLSearchParams(body).toString()}`,
+          method: 'POST',
+          // body,
+        };
+      },
     }),
 
     deleteAlgorithm: build.mutation({
