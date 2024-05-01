@@ -1,41 +1,36 @@
 import { Card, FormControl, TextField, Typography } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Admin from '../../components/Admin';
 import Layout from '../../components/Layout';
-import { useCreateaAlgorithmMutation } from '../../services/algorithmService';
-import { useGetDifficultiesQuery } from '../../services/difficultyService';
+import { useAlgorithmAddTestCaseMutation } from '../../services/algorithmService';
 
-const AlgorithmCreatePage = () => {
-  const [create, result] = useCreateaAlgorithmMutation();
+const AlgorithmTaskPage = () => {
+  const { id } = useParams();
 
-  const { data: tags } = useGetDifficultiesQuery();
+  const [create, result] = useAlgorithmAddTestCaseMutation();
 
   const [form, setForm] = useState({
-    title: '',
-    constraints: '',
-    problemStatement: '',
-    difficultyLevel: 'HARD',
+    correctAnswer: '',
+    testCase: '',
   });
 
   const createAlgorithm = (e) => {
     e.preventDefault();
-    create(form);
+    create({ id, ...form });
   };
 
   const navigate = useNavigate();
 
-  console.log(result);
-
   useEffect(() => {
     if (result.isError) {
-      if (result?.error?.data === 'Algorithm added successfully') {
+      if (result?.error?.data === 'Algorithm test case added successfully') {
         Swal.fire({
           icon: 'success',
           title: 'Uğurlu əməliyyat',
-          text: 'Algorithm uğurla yaradıldı',
+          text: 'Tapşırıq uğurla yaradıldı',
         });
         navigate('/admin/algorithms');
       } else {
@@ -52,7 +47,7 @@ const AlgorithmCreatePage = () => {
     <Admin>
       <Layout>
         <Card sx={{ padding: 4, marginTop: 10 }}>
-          <Typography>Yeni Mövzu</Typography>
+          <Typography>Yeni Tapşırıq</Typography>
           <form
             action=''
             style={{ display: 'flex', flexDirection: 'column' }}
@@ -61,61 +56,20 @@ const AlgorithmCreatePage = () => {
             <div className='mt-3'>
               <FormControl fullWidth>
                 <TextField
-                  label='Başlıq'
+                  label='Düzgün cavab'
                   variant='outlined'
-                  value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  value={form.correctAnswer}
+                  onChange={(e) => setForm({ ...form, correctAnswer: e.target.value })}
                 />
               </FormControl>
             </div>
             <div className='mt-3'>
-              <Typography>Təsvir</Typography>
+              <Typography>Test</Typography>
               <FormControl fullWidth>
                 <Editor
                   apiKey='p0h5rgakj2fe8nyg5m4bqr5bjv68g57oqj2kn2s0tpokaf46'
-                  value={form.problemStatement}
-                  onEditorChange={(e) => setForm({ ...form, problemStatement: e })}
-                  init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist',
-                      'autolink',
-                      'lists',
-                      'link',
-                      'image',
-                      'charmap',
-                      'preview',
-                      'anchor',
-                      'searchreplace',
-                      'visualblocks',
-                      'code',
-                      'fullscreen',
-                      'insertdatetime',
-                      'media',
-                      'table',
-                      'code',
-                      'help',
-                      'wordcount',
-                    ],
-                    toolbar:
-                      'undo redo | blocks | ' +
-                      'bold italic forecolor | alignleft aligncenter ' +
-                      'alignright alignjustify | bullist numlist outdent indent | ' +
-                      'removeformat | help | superscript subscript',
-                    content_style:
-                      'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-                  }}
-                />
-              </FormControl>
-            </div>
-            <div className='mt-3'>
-              <Typography>Məhdudiyyətlər</Typography>
-              <FormControl fullWidth>
-                <Editor
-                  apiKey='p0h5rgakj2fe8nyg5m4bqr5bjv68g57oqj2kn2s0tpokaf46'
-                  value={form.constraints}
-                  onEditorChange={(e) => setForm({ ...form, constraints: e })}
+                  value={form.testCase}
+                  onEditorChange={(e) => setForm({ ...form, testCase: e })}
                   init={{
                     height: 500,
                     menubar: false,
@@ -166,4 +120,4 @@ const AlgorithmCreatePage = () => {
   );
 };
 
-export default AlgorithmCreatePage;
+export default AlgorithmTaskPage;

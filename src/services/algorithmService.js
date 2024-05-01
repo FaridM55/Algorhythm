@@ -6,6 +6,7 @@ const algorithmService = api.injectEndpoints({
       query: () => ({
         url: '/algorithms',
       }),
+      providesTags: ['ALGORITHM'],
     }),
 
     createaAlgorithm: build.mutation({
@@ -17,8 +18,8 @@ const algorithmService = api.injectEndpoints({
     }),
 
     algorithmAddTestCase: build.mutation({
-      query: ({ id, body }) => ({
-        url: `/algorithms/{$id}/addTestCase`,
+      query: ({ id, ...body }) => ({
+        url: `/algorithms/${id}/addTestCase`,
         method: 'POST',
         body,
       }),
@@ -37,6 +38,7 @@ const algorithmService = api.injectEndpoints({
         url: `/algorithms/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['ALGORITHM'],
     }),
 
     getAlgorithm: build.query({

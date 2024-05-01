@@ -10,11 +10,11 @@ const Navbar = ({ active }) => {
 
   const isAdmin = useMemo(() => {
     if (user) {
-      return user?.roleName?.find((role) => role === 'ADMIN') || false;
+      return user?.roleName?.find((role) => role === 'ADMIN') !== undefined;
     } else {
       return false;
     }
-  }, [isAuth]);
+  }, [isAuth, user]);
 
   const handleLogout = () => {
     dispatch(auth.actions.logout());
@@ -53,6 +53,30 @@ const Navbar = ({ active }) => {
                 Əlaqə
               </a>
             </li>
+
+            {isAdmin && (
+              <li className='nav-item dropdown'>
+                <a
+                  className='nav-link dropdown-toggle'
+                  href='#'
+                  role='button'
+                  data-bs-toggle='dropdown'
+                  aria-expanded='false'
+                >
+                  Admin Panel
+                </a>
+                <ul className='dropdown-menu'>
+                  <Link
+                    className={classNames('dropdown-item', { active: active === 'game' })}
+                    aria-current='page'
+                    to='/admin/algorithms'
+                  >
+                    Alqoritmlər
+                  </Link>
+                </ul>
+              </li>
+            )}
+
             {isAuth ? (
               <li className='nav-item dropdown'>
                 <a
@@ -82,28 +106,6 @@ const Navbar = ({ active }) => {
                 >
                   Giriş / Qeydiyyat
                 </Link>
-              </li>
-            )}
-            {isAdmin && (
-              <li className='nav-item dropdown'>
-                <a
-                  className='nav-link dropdown-toggle'
-                  href='#'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                >
-                  Admin Panel
-                </a>
-                <ul className='dropdown-menu'>
-                  <Link
-                    className={classNames('dropdown-item', { active: active === 'game' })}
-                    aria-current='page'
-                    to='/admin/algorithms'
-                  >
-                    Alqoritmlər
-                  </Link>
-                </ul>
               </li>
             )}
           </ul>

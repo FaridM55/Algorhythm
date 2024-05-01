@@ -171,7 +171,7 @@ const TaskPage = () => {
               </div>
             </form>
           </div>
-          <div className='info-card card p-5 mt-3'>
+          <div className='info-card card px-5 mt-3'>
             <h2 className='text-warning'>Çıxış</h2>
             <p>{message}</p>
           </div>

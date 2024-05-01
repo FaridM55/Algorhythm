@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import 'sweetalert2/src/sweetalert2.scss';
 import App from './App.jsx';
 import { persistor, store } from './state/store';
 

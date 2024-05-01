@@ -4,7 +4,7 @@ const difficultyService = api.injectEndpoints({
   endpoints: (builder) => ({
     getDifficulties: builder.query({
       query: () => ({
-        url: '/difficulty',
+        url: '/algorithmtag',
         method: 'GET',
       }),
     }),
