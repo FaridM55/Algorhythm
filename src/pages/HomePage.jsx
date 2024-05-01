@@ -35,7 +35,7 @@ const HomePage = () => {
           Hər mövzu üçün təmin <br />
           olunmuş müxtəlif təsvirə malik 
           tapşırıqlar istifadəçilərə fərqli 
-          tətbiq sahələri vəd edir.
+          tətbiq sahələri vəd edir.'
         />
         <InfoCard
           title='Diskussiya'
