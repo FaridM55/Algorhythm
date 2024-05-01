@@ -25,27 +25,31 @@ const HomePage = () => {
         />
         <InfoCard
           title='Praktiki Təhsil'
-          description='İstifadəçilər minimal proqramlaşdırma bilikləri ilə rahatlıqla mövzuları analiz edə və
-          tətbiq edə biləcəklər.
-          <br/>
-          <br/>
-          Mövzuların xronoloji ardıcıllığı
-          məqsədli şəkildə dizayn
-          edilərək istifadəçiləri
-          qarşılaşacağı qaranlıq
-          məqamlardan sığortalayır!'
+          description='İstifadəçilər öyrəndikləri 
+          mövzuları tətbiq etmə şansı 
+          əldə edərək biliklərini 
+          möhkəmləndirə və yeni 
+          mövzulara keçid edə bilərlər. 
+          <br />
+          <br />
+          Hər mövzu üçün təmin <br />
+          olunmuş müxtəlif təsvirə malik 
+          tapşırıqlar istifadəçilərə fərqli 
+          tətbiq sahələri vəd edir.
         />
         <InfoCard
           title='Diskussiya'
-          description='İstifadəçilər minimal proqramlaşdırma bilikləri ilə rahatlıqla mövzuları analiz edə və
-          tətbiq edə biləcəklər.
-          <br/>
-          <br/>
-          Mövzuların xronoloji ardıcıllığı
-          məqsədli şəkildə dizayn
-          edilərək istifadəçiləri
-          qarşılaşacağı qaranlıq
-          məqamlardan sığortalayır!'
+          description='İstifadəçilər icma panelindən 
+          istifadə edərək mövzular və 
+          ya tapşırıqlar haqqında sual
+          verə, mövcud sualları 
+          cavablandıra bilərlər.
+          <br />
+          <br />
+          İnteraktiv öyrənmə üsulu ilə,
+          istifadəçilər asanlıqla çətinlik
+          çəkdiləri məqamlarda digər istifadəçilərdən 
+          yardım ala bilirlər.'
         />
       </div>
     </Layout>
