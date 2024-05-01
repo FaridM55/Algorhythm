@@ -5,13 +5,13 @@ import userService from '../services/userService';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {},
+    user: null,
     token: null,
     isAuth: false,
   },
   reducers: {
     logout: (state) => {
-      state.user = {};
+      state.user = null;
       state.isAuth = false;
       state.token = null;
     },
@@ -28,7 +28,7 @@ const authSlice = createSlice({
     });
 
     build.addMatcher(userService.endpoints.me.matchRejected, (state) => {
-      state.user = {};
+      state.user = null;
       state.isAuth = false;
       state.token = null;
     });

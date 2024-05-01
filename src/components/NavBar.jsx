@@ -9,8 +9,11 @@ const Navbar = ({ active }) => {
   const dispatch = useDispatch();
 
   const isAdmin = useMemo(() => {
-    if (!isAuth) return false;
-    return user?.roleName[0] === 'ADMIN';
+    if (user) {
+      return user?.roleName?.find((role) => role === 'ADMIN');
+    } else {
+      return false;
+    }
   }, [isAuth]);
 
   const handleLogout = () => {
