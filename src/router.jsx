@@ -14,6 +14,12 @@ const AlgorithmCreatePage = lazy(() => import('./pages/Admin/AlgorithmCreatePage
 
 const AlgorithmTaskPage = lazy(() => import('./pages/Admin/AlgorithmTaskPage'));
 
+const SubjectCreatePage = lazy(() => import('./pages/Admin/SubjectCreatePage'));
+const SubjectListPage = lazy(() => import('./pages/Admin/SubjectListPage'));
+
+const AlgorithmTagCreatePage = lazy(() => import('./pages/Admin/AlgorithmTagCreatePage'));
+const AlgorithmTagListPage = lazy(() => import('./pages/Admin/AlgorithmTagListPage'));
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -76,6 +82,38 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <AlgorithmTaskPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/subjects/create',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <SubjectCreatePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/subjects',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <SubjectListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/algorithms/tags/create',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <AlgorithmTagCreatePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/algorithms/tags',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <AlgorithmTagListPage />
       </Suspense>
     ),
   },

@@ -3,11 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import GameCard from '../components/GameCard';
 import Layout from '../components/Layout';
-import { useGetAlgorithmsQuery } from '../services/algorithmService';
+import { useGetSubjectsQuery } from '../services/subjectService';
 import LoadingPage from './LoadingPage';
 
 const GamePage = () => {
-  const { data, isLoading } = useGetAlgorithmsQuery();
+  // const { data, isLoading } = useGetAlgorithmsQuery();
+
+  const { data, isLoading } = useGetSubjectsQuery();
 
   const { isAuth } = useSelector((state) => state.auth);
 

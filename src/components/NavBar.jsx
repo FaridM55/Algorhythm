@@ -73,6 +73,20 @@ const Navbar = ({ active }) => {
                   >
                     Alqoritmlər
                   </Link>
+                  <Link
+                    className={classNames('dropdown-item', { active: active === 'game' })}
+                    aria-current='page'
+                    to='/admin/subjects'
+                  >
+                    Mövzular
+                  </Link>
+                  <Link
+                    className={classNames('dropdown-item', { active: active === 'game' })}
+                    aria-current='page'
+                    to='/admin/algorithms/tags'
+                  >
+                    Teqlər
+                  </Link>
                 </ul>
               </li>
             )}
