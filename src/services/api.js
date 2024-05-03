@@ -14,7 +14,7 @@ const api = createApi({
   }),
   reducerPath: 'api',
   endpoints: () => ({}),
-  tagTypes: ['USER', 'ALGORITHM', 'SUBJECT', 'TAG'],
+  tagTypes: ['USER', 'ALGORITHM', 'SUBJECT', 'TAG', 'CONVERSATIONTOPIC'],
 });
 
 export default api;

@@ -48,10 +48,23 @@ const Navbar = ({ active }) => {
                 Oyun
               </Link>
             </li>
+            {/* <li className='nav-item'>
+              <Link
+                className={classNames('nav-link', { active: active === 'discussion' })}
+                aria-current='page'
+                to='/discussion'
+              >
+                İcma
+              </Link>
+            </li> */}
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <Link
+                className={classNames('nav-link', { active: active === 'contact' })}
+                aria-current='page'
+                to='/contact'
+              >
                 Əlaqə
-              </a>
+              </Link>
             </li>
 
             {isAdmin && (

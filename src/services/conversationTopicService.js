@@ -7,6 +7,7 @@ const conversationTopicService = api.injectEndpoints({
         url: '/conversationtopic',
         method: 'GET',
       }),
+      providesTags: ['CONVERSATIONTOPIC'],
     }),
     createConversationTopic: builder.mutation({
       query: (body) => ({
@@ -14,6 +15,7 @@ const conversationTopicService = api.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['CONVERSATIONTOPIC'],
     }),
     updateConversationTopic: builder.mutation({
       query: ({ id, body }) => ({
@@ -21,18 +23,21 @@ const conversationTopicService = api.injectEndpoints({
         method: 'PUT',
         body,
       }),
+      invalidatesTags: ['CONVERSATIONTOPIC'],
     }),
     deleteConversationTopic: builder.mutation({
       query: (id) => ({
         url: `/conversationtopic/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['CONVERSATIONTOPIC'],
     }),
     getConversationTopic: builder.query({
       query: (id) => ({
         url: `/conversationtopic/${id}`,
         method: 'GET',
       }),
+      providesTags: ['CONVERSATIONTOPIC'],
     }),
   }),
   overrideExisting: true,

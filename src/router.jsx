@@ -5,6 +5,8 @@ import LoadingPage from './pages/LoadingPage';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const DiscussionPage = lazy(() => import('./pages/DiscussionPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const GamePage = lazy(() => import('./pages/GamePage'));
@@ -25,6 +27,9 @@ const AlgorithmTagCreatePage = lazy(() => import('./pages/Admin/AlgorithmTagCrea
 const AlgorithmTagListPage = lazy(() => import('./pages/Admin/AlgorithmTagListPage'));
 const AlgorithmTagUpdatePage = lazy(() => import('./pages/Admin/AlgorithmTagUpdatePage'));
 
+const ConversationTopicListPage = lazy(() => import('./pages/Admin/ConversationTopicListPage'));
+const ConversationTopicCreatePage = lazy(() => import('./pages/Admin/ConversationTopicCreatePage'));
+
 const UserListPage = lazy(() => import('./pages/Admin/UserListPage'));
 
 const router = createBrowserRouter([
@@ -33,6 +38,22 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <HomePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/discussion',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <DiscussionPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/contact',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ContactPage />
       </Suspense>
     ),
   },
@@ -169,6 +190,22 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <UserListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/conversation-topics',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ConversationTopicListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/conversation-topics/create',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ConversationTopicCreatePage />
       </Suspense>
     ),
   },
