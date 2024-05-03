@@ -13,6 +13,7 @@ const TaskPage = lazy(() => import('./pages/TaskPage'));
 const AlgorithmListPage = lazy(() => import('./pages/Admin/AlgorithmListPage'));
 const AlgorithmCreatePage = lazy(() => import('./pages/Admin/AlgorithmCreatePage'));
 const AlgorithmUpdatePage = lazy(() => import('./pages/Admin/AlgorithmUpdatePage'));
+const AlgorithmSubjectLinkPage = lazy(() => import('./pages/Admin/AlgorithmSubjectLinkPage'));
 
 const AlgorithmTaskPage = lazy(() => import('./pages/Admin/AlgorithmTaskPage'));
 
@@ -104,6 +105,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <AlgorithmTaskPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/algorithms/:id/subject',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <AlgorithmSubjectLinkPage />
       </Suspense>
     ),
   },

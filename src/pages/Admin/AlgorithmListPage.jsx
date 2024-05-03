@@ -52,6 +52,15 @@ const AlgorithmListPage = () => {
                       </button>
 
                       <button
+                        className='btn btn-primary'
+                        onClick={() => {
+                          navigate(`/admin/algorithms/${params.row.id}/subject`);
+                        }}
+                      >
+                        Mövzuya bağla
+                      </button>
+
+                      <button
                         className='btn btn-warning'
                         onClick={() => navigate(`/admin/algorithms/${params.row.id}/update`)}
                       >
