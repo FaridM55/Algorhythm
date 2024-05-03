@@ -1,12 +1,24 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { useSolutionCountQuery } from '../services/userService';
 
 const ProfilePage = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuth } = useSelector((state) => state.auth);
 
   const { data: count } = useSolutionCountQuery();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate('/login');
+    }
+  }, [isAuth]);
+
+  if (!isAuth) return null;
 
   return (
     <Layout>
