@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Logo from '../images/logo.png';
 import auth from '../state/authSlice';
 
 const Navbar = ({ active }) => {
@@ -24,6 +25,7 @@ const Navbar = ({ active }) => {
     <nav className='navbar navbar-expand-lg navbar-dark'>
       <div className='container-fluid'>
         <Link className='navbar-brand fw-bold' to='/'>
+          <img src={Logo} style={{ width: 40, height: 45, objectFit: 'contain' }} />
           AlgoRhythm
         </Link>
         <button
