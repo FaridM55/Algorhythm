@@ -78,7 +78,7 @@ const LoginPage = () => {
             <Button variant='text' onClick={() => navigate('/register')}>
               Qeydiyyat
             </Button>
-            <Button variant='text'>Şifrəni unutdum</Button>
+            {/* <Button variant='text'>Şifrəni unutdum</Button> */}
           </div>
         </div>
       </div>

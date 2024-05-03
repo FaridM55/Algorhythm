@@ -11,6 +11,8 @@ const MessagePage = lazy(() => import('./pages/MessagePage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const GamePage = lazy(() => import('./pages/GamePage'));
 const TaskPage = lazy(() => import('./pages/TaskPage'));
+const VerifyPage = lazy(() => import('./pages/VerifyPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 
 const AlgorithmListPage = lazy(() => import('./pages/Admin/AlgorithmListPage'));
 const AlgorithmCreatePage = lazy(() => import('./pages/Admin/AlgorithmCreatePage'));
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/profile',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ProfilePage />
+      </Suspense>
+    ),
+  },
+  {
     path: '/discussion/:id',
     element: (
       <Suspense fallback={<LoadingPage />}>
@@ -63,6 +73,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <ContactPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/verify',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <VerifyPage />
       </Suspense>
     ),
   },

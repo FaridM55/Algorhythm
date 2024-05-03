@@ -130,7 +130,7 @@ const RegisterPage = () => {
             <Button variant='text' onClick={() => navigate('/login')}>
               Daxil ol
             </Button>
-            <Button variant='text'>Şifrəni unutdum</Button>
+            {/* <Button variant='text'>Şifrəni unutdum</Button> */}
           </div>
         </div>
       </div>

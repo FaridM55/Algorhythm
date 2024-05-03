@@ -17,10 +17,17 @@ const userService = api.injectEndpoints({
         method: 'GET',
       }),
     }),
+
+    solutionCount: builder.query({
+      query: () => ({
+        url: '/user/solutioncount',
+        method: 'GET',
+      }),
+    }),
   }),
   overrideExisting: true,
 });
 
-export const { useMeQuery, useUsersQuery } = userService;
+export const { useMeQuery, useUsersQuery, useSolutionCountQuery } = userService;
 
 export default userService;

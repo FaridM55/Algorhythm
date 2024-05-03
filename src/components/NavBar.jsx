@@ -124,6 +124,15 @@ const Navbar = ({ active }) => {
                 </a>
                 <ul className='dropdown-menu'>
                   <li>
+                    <Link
+                      className={classNames('dropdown-item', { active: active === 'profile' })}
+                      aria-current='page'
+                      to='/profile'
+                    >
+                      Profil
+                    </Link>
+                  </li>
+                  <li>
                     <button className='dropdown-item' onClick={handleLogout}>
                       Çıxış
                     </button>
