@@ -35,7 +35,7 @@ const SubjectPage = () => {
           <button
             key={item.id}
             onClick={() => navigate(`/game/${item.id}`)}
-            className='btn btn-primary bg-white text-black d-flex justify-content-between align-items-center'
+            className='btn btn-primary bg-white text-black d-flex justify-content-between align-items-center mb-2'
           >
             {item.title} <ArrowRight />
           </button>
