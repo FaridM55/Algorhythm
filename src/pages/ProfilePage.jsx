@@ -20,13 +20,13 @@ const ProfilePage = () => {
         <div className='row'>
           <div className='col-lg-3'>
             <img
-              src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=0D8ABC&color=fff&rounded=true`}
+              src={`https://ui-avatars.com/api/?name=${user?.firstName}+${user?.lastName}&background=0D8ABC&color=fff&rounded=true`}
               style={{ width: 100, height: 100, borderRadius: 100, objectFit: 'cover' }}
             />
           </div>
           <div className='col-lg-9'>
             <h4 className='text-warning'>Email: </h4>
-            <p className='text-white'>{user.email}</p>
+            <p className='text-white'>{user?.email}</p>
 
             <h4 className='text-warning'>Həll edilən tapşırıq sayı:</h4>
             <p className='text-white'>{count}</p>
