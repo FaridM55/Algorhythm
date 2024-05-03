@@ -48,6 +48,7 @@ const ConversationListPage = () => {
                   return (
                     <div className='d-flex align-items-center' style={{ gap: 10, marginTop: 5 }}>
                       <button
+                        disabled
                         className='btn btn-danger'
                         onClick={() => {
                           Swal.fire({

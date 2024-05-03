@@ -15,6 +15,7 @@ const CreateDiscussion = () => {
 
   const createConversation = (e) => {
     e.preventDefault();
+    if (form.conversationName === '' || form.topicName === '') return;
     create(form);
     setForm({
       conversationName: '',

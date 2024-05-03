@@ -2,19 +2,23 @@ import api from './api';
 
 const messageService = api.injectEndpoints({
   endpoints: (builder) => ({
+    getMessages: builder.query({
+      query: (id) => ({
+        url: `/message/conversation/${id}`,
+        method: 'GET',
+      }),
+
+      providesTags: ['MESSAGE'],
+    }),
+
     sendMessage: builder.mutation({
-      query: (body) => ({
-        url: '/message',
+      query: ({ id, ...body }) => ({
+        url: `/message/${id}`,
         method: 'POST',
         body,
       }),
-    }),
 
-    getMessages: builder.query({
-      query: (id) => ({
-        url: `/message/${id}`,
-        method: 'GET',
-      }),
+      invalidatesTags: ['MESSAGE'],
     }),
   }),
 });
