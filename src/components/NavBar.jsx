@@ -82,6 +82,13 @@ const Navbar = ({ active }) => {
                   <Link
                     className={classNames('dropdown-item', { active: active === 'game' })}
                     aria-current='page'
+                    to='/admin/conversations'
+                  >
+                    İcma
+                  </Link>
+                  <Link
+                    className={classNames('dropdown-item', { active: active === 'game' })}
+                    aria-current='page'
                     to='/admin/conversation-topics'
                   >
                     İcma Mövzuları

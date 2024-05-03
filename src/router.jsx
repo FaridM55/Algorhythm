@@ -19,6 +19,8 @@ const AlgorithmCreatePage = lazy(() => import('./pages/Admin/AlgorithmCreatePage
 const AlgorithmUpdatePage = lazy(() => import('./pages/Admin/AlgorithmUpdatePage'));
 const AlgorithmSubjectLinkPage = lazy(() => import('./pages/Admin/AlgorithmSubjectLinkPage'));
 
+const ConversationListPage = lazy(() => import('./pages/Admin/ConversationListPage'));
+
 const AlgorithmTaskPage = lazy(() => import('./pages/Admin/AlgorithmTaskPage'));
 
 const SubjectCreatePage = lazy(() => import('./pages/Admin/SubjectCreatePage'));
@@ -241,6 +243,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <ConversationTopicUpdatePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/conversations',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ConversationListPage />
       </Suspense>
     ),
   },
