@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (!isAuth) {
-      navigate('/login');
+      navigate('/');
     }
   }, [isAuth]);
 
