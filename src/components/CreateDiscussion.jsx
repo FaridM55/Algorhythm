@@ -54,7 +54,7 @@ const CreateDiscussion = () => {
           </FormControl>
         </div>
         <div className='d-flex justify-content-end'>
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' color='success'>
             Əlavə et
           </Button>
         </div>
