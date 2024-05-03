@@ -9,5 +9,14 @@ const messageService = api.injectEndpoints({
         body,
       }),
     }),
+
+    getMessages: builder.query({
+      query: (id) => ({
+        url: `/message/${id}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
+
+export const { useSendMessageMutation, useGetMessagesQuery } = messageService;

@@ -7,7 +7,7 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DiscussionPage = lazy(() => import('./pages/DiscussionPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
-
+const MessagePage = lazy(() => import('./pages/MessagePage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const GamePage = lazy(() => import('./pages/GamePage'));
 const TaskPage = lazy(() => import('./pages/TaskPage'));
@@ -29,6 +29,7 @@ const AlgorithmTagUpdatePage = lazy(() => import('./pages/Admin/AlgorithmTagUpda
 
 const ConversationTopicListPage = lazy(() => import('./pages/Admin/ConversationTopicListPage'));
 const ConversationTopicCreatePage = lazy(() => import('./pages/Admin/ConversationTopicCreatePage'));
+const ConversationTopicUpdatePage = lazy(() => import('./pages/Admin/ConversationTopicUpdatePage'));
 
 const UserListPage = lazy(() => import('./pages/Admin/UserListPage'));
 
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <DiscussionPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/discussion/:id',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <MessagePage />
       </Suspense>
     ),
   },
@@ -206,6 +215,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <ConversationTopicCreatePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/conversation-topics/:id/update',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <ConversationTopicUpdatePage />
       </Suspense>
     ),
   },

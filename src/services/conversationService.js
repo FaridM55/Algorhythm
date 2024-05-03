@@ -7,13 +7,15 @@ const conversationService = api.injectEndpoints({
         url: '/conversation',
         method: 'GET',
       }),
+      providesTags: ['CONVERSATION'],
     }),
     createConversation: builder.mutation({
       query: (body) => ({
-        url: '/conversation',
+        url: '/conversation/create',
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['CONVERSATION'],
     }),
     getConversation: builder.query({
       query: (id) => ({

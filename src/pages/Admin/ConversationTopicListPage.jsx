@@ -45,12 +45,14 @@ const ConversationTopicListPage = () => {
                 renderCell: (params) => {
                   return (
                     <div className='d-flex align-items-center' style={{ gap: 10, marginTop: 5 }}>
-                      <button
+                      {/* <button
                         className='btn btn-warning'
-                        onClick={() => navigate(`/admin/algorithms/${params.row.id}/update`)}
+                        onClick={() =>
+                          navigate(`/admin/conversation-topics/${params.row.id}/update`)
+                        }
                       >
                         Redaktə et
-                      </button>
+                      </button> */}
 
                       <button
                         className='btn btn-danger'

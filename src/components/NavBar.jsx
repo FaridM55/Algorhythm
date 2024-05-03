@@ -48,7 +48,7 @@ const Navbar = ({ active }) => {
                 Oyun
               </Link>
             </li>
-            {/* <li className='nav-item'>
+            <li className='nav-item'>
               <Link
                 className={classNames('nav-link', { active: active === 'discussion' })}
                 aria-current='page'
@@ -56,7 +56,7 @@ const Navbar = ({ active }) => {
               >
                 İcma
               </Link>
-            </li> */}
+            </li>
             <li className='nav-item'>
               <Link
                 className={classNames('nav-link', { active: active === 'contact' })}
@@ -79,6 +79,13 @@ const Navbar = ({ active }) => {
                   Admin Panel
                 </a>
                 <ul className='dropdown-menu'>
+                  <Link
+                    className={classNames('dropdown-item', { active: active === 'game' })}
+                    aria-current='page'
+                    to='/admin/conversation-topics'
+                  >
+                    İcma Mövzuları
+                  </Link>
                   <Link
                     className={classNames('dropdown-item', { active: active === 'game' })}
                     aria-current='page'

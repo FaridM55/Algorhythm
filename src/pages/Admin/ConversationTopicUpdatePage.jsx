@@ -1,24 +1,36 @@
 import { Card, FormControl, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Admin from '../../components/Admin';
 import Layout from '../../components/Layout';
-import { useCreateConversationTopicMutation } from '../../services/conversationTopicService';
-import { useGetDifficultiesQuery } from '../../services/difficultyService';
+import {
+  useGetConversationTopicQuery,
+  useUpdateConversationTopicMutation,
+} from '../../services/conversationTopicService';
 
-const ConversationTopicCreatePage = () => {
-  const [create, result] = useCreateConversationTopicMutation();
+const ConversationTopicUpdatePage = () => {
+  const { id } = useParams();
 
-  const { data: tags } = useGetDifficultiesQuery();
+  const { data: topic } = useGetConversationTopicQuery(id);
+
+  const [create, result] = useUpdateConversationTopicMutation();
 
   const [form, setForm] = useState({
     topic: '',
   });
 
+  useEffect(() => {
+    if (topic) {
+      setForm({
+        topic: topic.topic,
+      });
+    }
+  }, [topic]);
+
   const createAlgorithm = (e) => {
     e.preventDefault();
-    create(form);
+    create({ id, ...form });
   };
 
   const navigate = useNavigate();
@@ -29,7 +41,7 @@ const ConversationTopicCreatePage = () => {
         Swal.fire({
           icon: 'success',
           title: 'Uğurlu əməliyyat',
-          text: 'Algorithm uğurla yaradıldı',
+          text: 'Mövzu uğurla yadda saxlanıldı',
         });
         navigate('/admin/conversation-topics');
       } else {
@@ -45,7 +57,7 @@ const ConversationTopicCreatePage = () => {
       Swal.fire({
         icon: 'success',
         title: 'Uğurlu əməliyyat',
-        text: 'Algorithm ugurla yaradildi',
+        text: 'Mövzu ugurla yaradildi',
       });
       navigate('/admin/conversation-topics');
     }
@@ -80,7 +92,7 @@ const ConversationTopicCreatePage = () => {
             onChange={(e) => setForm({ ...form, difficultyLevel: e.target.value })}
           /> */}
             <div className='mt-3'>
-              <button className='btn btn-primary'>Yarat</button>
+              <button className='btn btn-primary'>Yadda saxla</button>
             </div>
           </form>
         </Card>
@@ -89,4 +101,4 @@ const ConversationTopicCreatePage = () => {
   );
 };
 
-export default ConversationTopicCreatePage;
+export default ConversationTopicUpdatePage;
