@@ -16,7 +16,7 @@ const GameCard = ({ title, id }) => {
           variant='contained'
           color='inherit'
           sx={{ background: '#fff', color: '#000' }}
-          onClick={() => navigate(`/game/${id}`)}
+          onClick={() => navigate(`/subject/${id}`)}
           disabled={!isAuth}
         >
           {isAuth ? (

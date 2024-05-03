@@ -1,15 +1,19 @@
 import { Card, FormControl, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Admin from '../../components/Admin';
 import Layout from '../../components/Layout';
-import { useCreateaAlgorithmMutation } from '../../services/algorithmService';
+import { useGetAlgorithmQuery, useUpdateAlgorithmMutation } from '../../services/algorithmService';
 import { useGetDifficultiesQuery } from '../../services/difficultyService';
 
-const AlgorithmCreatePage = () => {
-  const [create, result] = useCreateaAlgorithmMutation();
+const AlgorithmUpdatePage = () => {
+  const { id } = useParams();
+
+  const { data: algorithm } = useGetAlgorithmQuery(id);
+
+  const [create, result] = useUpdateAlgorithmMutation();
 
   const { data: tags } = useGetDifficultiesQuery();
 
@@ -20,9 +24,20 @@ const AlgorithmCreatePage = () => {
     difficultyLevel: undefined,
   });
 
+  useEffect(() => {
+    if (algorithm) {
+      setForm({
+        title: algorithm.title,
+        constraints: algorithm.constraints,
+        problemStatement: algorithm.problemStatement,
+        difficultyLevel: algorithm.difficulty,
+      });
+    }
+  }, [algorithm]);
+
   const createAlgorithm = (e) => {
     e.preventDefault();
-    create(form);
+    create({ id, ...form });
   };
 
   const navigate = useNavigate();
@@ -44,7 +59,16 @@ const AlgorithmCreatePage = () => {
         });
       }
     }
-  }, [result.isError]);
+
+    if (result.isSuccess) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Uğurlu əməliyyat',
+        text: 'Algorithm uğurla yaradıldı',
+      });
+      navigate('/admin/algorithms');
+    }
+  }, [result.isError, result.isSuccess]);
 
   return (
     <Admin>
@@ -171,7 +195,7 @@ const AlgorithmCreatePage = () => {
             onChange={(e) => setForm({ ...form, difficultyLevel: e.target.value })}
           /> */}
             <div className='mt-3'>
-              <button className='btn btn-primary'>Yarat</button>
+              <button className='btn btn-primary'>Yadda saxla</button>
             </div>
           </form>
         </Card>
@@ -180,4 +204,4 @@ const AlgorithmCreatePage = () => {
   );
 };
 
-export default AlgorithmCreatePage;
+export default AlgorithmUpdatePage;

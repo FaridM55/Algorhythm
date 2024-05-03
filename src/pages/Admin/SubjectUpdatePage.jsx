@@ -1,41 +1,61 @@
 import { Card, FormControl, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Admin from '../../components/Admin';
 import Layout from '../../components/Layout';
-import { useCreateaAlgorithmMutation } from '../../services/algorithmService';
 import { useGetDifficultiesQuery } from '../../services/difficultyService';
+import { useGetSubjectQuery, useUpdateSubjectMutation } from '../../services/subjectService';
 
-const AlgorithmCreatePage = () => {
-  const [create, result] = useCreateaAlgorithmMutation();
+const SubjectUpdatePage = () => {
+  const { id } = useParams();
+
+  const { data: subject } = useGetSubjectQuery(id);
+
+  const [update, result] = useUpdateSubjectMutation();
 
   const { data: tags } = useGetDifficultiesQuery();
 
   const [form, setForm] = useState({
     title: '',
-    constraints: '',
-    problemStatement: '',
-    difficultyLevel: undefined,
+    description: '',
+    algorithmTag: null,
+    rank: 0,
   });
+
+  useEffect(() => {
+    if (subject) {
+      setForm({
+        title: subject.title,
+        description: subject.description,
+        algorithmTag: subject.algorithmTag,
+        rank: subject.rank,
+      });
+    }
+  }, [subject]);
 
   const createAlgorithm = (e) => {
     e.preventDefault();
-    create(form);
+    update({
+      id,
+      ...form,
+    });
   };
 
   const navigate = useNavigate();
 
+  console.log(result);
+
   useEffect(() => {
     if (result.isError) {
-      if (result?.error?.data === 'Algorithm added successfully') {
+      if (result?.error?.data === 'Subject created successfully') {
         Swal.fire({
           icon: 'success',
           title: 'Uğurlu əməliyyat',
-          text: 'Algorithm uğurla yaradıldı',
+          text: 'Mövzu yadda saxlanıldı',
         });
-        navigate('/admin/algorithms');
+        navigate('/admin/subjects');
       } else {
         Swal.fire({
           icon: 'error',
@@ -44,7 +64,16 @@ const AlgorithmCreatePage = () => {
         });
       }
     }
-  }, [result.isError]);
+
+    if (result.isSuccess) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Uğurlu əməliyyat',
+        text: 'Mövzu yadda saxlanıldı',
+      });
+      navigate('/admin/subjects');
+    }
+  }, [result.isError, result.isSuccess]);
 
   return (
     <Admin>
@@ -63,6 +92,7 @@ const AlgorithmCreatePage = () => {
                   variant='outlined'
                   value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  required
                 />
               </FormControl>
             </div>
@@ -70,8 +100,8 @@ const AlgorithmCreatePage = () => {
               <FormControl fullWidth>
                 <Select
                   required
-                  value={form.difficultyLevel}
-                  onChange={(e) => setForm({ ...form, difficultyLevel: e.target.value })}
+                  value={form.algorithmTag}
+                  onChange={(e) => setForm({ ...form, algorithmTag: e.target.value })}
                   placeholder='Teq'
                 >
                   {tags?.map((tag) => (
@@ -87,8 +117,8 @@ const AlgorithmCreatePage = () => {
               <FormControl fullWidth>
                 <Editor
                   apiKey='p0h5rgakj2fe8nyg5m4bqr5bjv68g57oqj2kn2s0tpokaf46'
-                  value={form.problemStatement}
-                  onEditorChange={(e) => setForm({ ...form, problemStatement: e })}
+                  value={form.description}
+                  onEditorChange={(e) => setForm({ ...form, description: e })}
                   init={{
                     height: 500,
                     menubar: false,
@@ -123,47 +153,7 @@ const AlgorithmCreatePage = () => {
                 />
               </FormControl>
             </div>
-            <div className='mt-3'>
-              <Typography>Məhdudiyyətlər</Typography>
-              <FormControl fullWidth>
-                <Editor
-                  apiKey='p0h5rgakj2fe8nyg5m4bqr5bjv68g57oqj2kn2s0tpokaf46'
-                  value={form.constraints}
-                  onEditorChange={(e) => setForm({ ...form, constraints: e })}
-                  init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist',
-                      'autolink',
-                      'lists',
-                      'link',
-                      'image',
-                      'charmap',
-                      'preview',
-                      'anchor',
-                      'searchreplace',
-                      'visualblocks',
-                      'code',
-                      'fullscreen',
-                      'insertdatetime',
-                      'media',
-                      'table',
-                      'code',
-                      'help',
-                      'wordcount',
-                    ],
-                    toolbar:
-                      'undo redo | blocks | ' +
-                      'bold italic forecolor | alignleft aligncenter ' +
-                      'alignright alignjustify | bullist numlist outdent indent | ' +
-                      'removeformat | help | superscript subscript',
-                    content_style:
-                      'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-                  }}
-                />
-              </FormControl>
-            </div>
+
             {/* <TextField
             label='Tədris'
             variant='outlined'
@@ -171,7 +161,7 @@ const AlgorithmCreatePage = () => {
             onChange={(e) => setForm({ ...form, difficultyLevel: e.target.value })}
           /> */}
             <div className='mt-3'>
-              <button className='btn btn-primary'>Yarat</button>
+              <button className='btn btn-primary'>Yadda saxla</button>
             </div>
           </form>
         </Card>
@@ -180,4 +170,4 @@ const AlgorithmCreatePage = () => {
   );
 };
 
-export default AlgorithmCreatePage;
+export default SubjectUpdatePage;

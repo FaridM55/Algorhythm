@@ -15,6 +15,8 @@ const algorithmService = api.injectEndpoints({
         method: 'POST',
         body,
       }),
+
+      invalidatesTags: ['ALGORITHM'],
     }),
 
     algorithmAddTestCase: build.mutation({
@@ -23,6 +25,8 @@ const algorithmService = api.injectEndpoints({
         method: 'POST',
         body,
       }),
+
+      invalidatesTags: ['ALGORITHM'],
     }),
 
     algorithmSubmit: build.mutation({
@@ -34,6 +38,8 @@ const algorithmService = api.injectEndpoints({
           // body,
         };
       },
+
+      invalidatesTags: ['ALGORITHM'],
     }),
 
     deleteAlgorithm: build.mutation({
@@ -48,14 +54,17 @@ const algorithmService = api.injectEndpoints({
       query: (id) => ({
         url: `/algorithms/${id}`,
       }),
+
+      providesTags: ['ALGORITHM'],
     }),
 
     updateAlgorithm: build.mutation({
-      query: ({ id, body }) => ({
-        url: `/algorithms/${id}`,
+      query: ({ id, ...body }) => ({
+        url: `/algorithms/${id}?${new URLSearchParams(body).toString()}`,
         method: 'PUT',
-        body,
       }),
+
+      invalidatesTags: ['ALGORITHM'],
     }),
   }),
   overrideExisting: true,

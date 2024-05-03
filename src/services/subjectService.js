@@ -24,11 +24,39 @@ const subjectService = api.injectEndpoints({
       }),
       invalidatesTags: ['SUBJECT'],
     }),
+    getSubject: build.query({
+      query: (id) => ({
+        url: `/subjects/${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['SUBJECT'],
+    }),
+    updateSubject: build.mutation({
+      query: ({ id, ...body }) => ({
+        url: `/subjects/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['SUBJECT'],
+    }),
+    linkAlgoritmToSubject: build.mutation({
+      query: ({ subjectId, id }) => ({
+        url: `/subjects/${subjectId}/${id}`,
+        method: 'GET',
+      }),
+      invalidatesTags: ['SUBJECT'],
+    }),
   }),
   overrideExisting: true,
 });
 
-export const { useGetSubjectsQuery, useCreateSubjectMutation, useDeleteSubjectMutation } =
-  subjectService;
+export const {
+  useGetSubjectsQuery,
+  useCreateSubjectMutation,
+  useDeleteSubjectMutation,
+  useGetSubjectQuery,
+  useUpdateSubjectMutation,
+  useLinkAlgoritmToSubjectMutation,
+} = subjectService;
 
 export default subjectService;

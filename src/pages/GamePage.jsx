@@ -33,7 +33,7 @@ const GamePage = () => {
           </div>
         )}
         {data?.map((item) => (
-          <GameCard key={item.id} title={item.title} id={item.id} />
+          <GameCard key={item.id} title={item.title} id={item.subjectId} />
         ))}
       </div>
     </Layout>

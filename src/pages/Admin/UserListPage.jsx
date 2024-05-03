@@ -1,31 +1,30 @@
 import { Card } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Admin from '../../components/Admin';
 import Layout from '../../components/Layout';
-import {
-  useDeleteDifficultyMutation,
-  useGetDifficultiesQuery,
-} from '../../services/difficultyService';
+import { useGetClientsQuery } from '../../services/adminService';
+import { useDeleteAlgorithmMutation } from '../../services/algorithmService';
 
-const AlgorithmTagListPage = () => {
-  const { data, isFetching } = useGetDifficultiesQuery();
+const UserListPage = () => {
+  const { data, isFetching } = useGetClientsQuery();
 
-  const [deleteAlgorithm] = useDeleteDifficultyMutation();
+  const [deleteAlgorithm] = useDeleteAlgorithmMutation();
+
+  const navigate = useNavigate();
 
   return (
     <Admin>
       <Layout>
         <Card sx={{ padding: 4, marginTop: 10 }}>
           <div className='d-flex justify-content-between align-items-center'>
-            <h1 className='mb-3'> Teqlər </h1>
-            <Link to='/admin/algorithms/tags/create'>
+            <h1 className='mb-3'> İstifadəçilər </h1>
+            <Link to='/admin/algorithms/create'>
               <button className='btn btn-success'>Yeni</button>
             </Link>
           </div>
           <DataGrid
-            getRowId={(row) => row}
             rows={data || []}
             columns={[
               {
@@ -36,9 +35,6 @@ const AlgorithmTagListPage = () => {
                 field: 'title',
                 headerName: 'Mövzu',
                 width: 300,
-                renderCell: (params) => {
-                  return <div>{params.row}</div>;
-                },
               },
               {
                 field: 'actions',
@@ -47,13 +43,18 @@ const AlgorithmTagListPage = () => {
                 renderCell: (params) => {
                   return (
                     <div className='d-flex align-items-center' style={{ gap: 10, marginTop: 5 }}>
-                      {/* <button
-                        className='btn btn-warning'
-                        disabled
-                        onClick={() => navigate(`/admin/algorithms/tags/${params.row}/update`)}
+                      <button
+                        className='btn btn-primary'
+                        onClick={() => {
+                          navigate(`/admin/algorithms/${params.row.id}/task`);
+                        }}
                       >
+                        Test əlavə et
+                      </button>
+
+                      <button className='btn btn-warning' disabled onClick={() => {}}>
                         Redaktə et
-                      </button> */}
+                      </button>
 
                       <button
                         className='btn btn-danger'
@@ -67,9 +68,9 @@ const AlgorithmTagListPage = () => {
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Əminsiniz',
                           }).then((result) => {
-                            deleteAlgorithm(params.row);
+                            deleteAlgorithm(params.row.id);
                             if (result.isConfirmed) {
-                              Swal.fire('Silindi!', 'Teq silindi.', 'success');
+                              Swal.fire('Silindi!', 'Algoritma silindi.', 'success');
                             }
                           });
                         }}
@@ -89,4 +90,4 @@ const AlgorithmTagListPage = () => {
   );
 };
 
-export default AlgorithmTagListPage;
+export default UserListPage;

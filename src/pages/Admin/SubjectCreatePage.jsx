@@ -73,6 +73,7 @@ const SubjectCreatePage = () => {
                   required
                   value={form.algorithmTag}
                   onChange={(e) => setForm({ ...form, algorithmTag: e.target.value })}
+                  placeholder='Teq'
                 >
                   {tags?.map((tag) => (
                     <MenuItem key={tag} value={tag}>

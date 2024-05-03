@@ -6,19 +6,25 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
+const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const GamePage = lazy(() => import('./pages/GamePage'));
 const TaskPage = lazy(() => import('./pages/TaskPage'));
 
 const AlgorithmListPage = lazy(() => import('./pages/Admin/AlgorithmListPage'));
 const AlgorithmCreatePage = lazy(() => import('./pages/Admin/AlgorithmCreatePage'));
+const AlgorithmUpdatePage = lazy(() => import('./pages/Admin/AlgorithmUpdatePage'));
 
 const AlgorithmTaskPage = lazy(() => import('./pages/Admin/AlgorithmTaskPage'));
 
 const SubjectCreatePage = lazy(() => import('./pages/Admin/SubjectCreatePage'));
 const SubjectListPage = lazy(() => import('./pages/Admin/SubjectListPage'));
+const SubjectUpdatePage = lazy(() => import('./pages/Admin/SubjectUpdatePage'));
 
 const AlgorithmTagCreatePage = lazy(() => import('./pages/Admin/AlgorithmTagCreatePage'));
 const AlgorithmTagListPage = lazy(() => import('./pages/Admin/AlgorithmTagListPage'));
+const AlgorithmTagUpdatePage = lazy(() => import('./pages/Admin/AlgorithmTagUpdatePage'));
+
+const UserListPage = lazy(() => import('./pages/Admin/UserListPage'));
 
 const router = createBrowserRouter([
   {
@@ -42,6 +48,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <RegisterPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: 'subject/:id',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <SubjectPage />
       </Suspense>
     ),
   },
@@ -78,6 +92,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/admin/algorithms/:id/update',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <AlgorithmUpdatePage />
+      </Suspense>
+    ),
+  },
+  {
     path: '/admin/algorithms/:id/task',
     element: (
       <Suspense fallback={<LoadingPage />}>
@@ -102,6 +124,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/admin/subjects/:id/update',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <SubjectUpdatePage />
+      </Suspense>
+    ),
+  },
+  {
     path: '/admin/algorithms/tags/create',
     element: (
       <Suspense fallback={<LoadingPage />}>
@@ -114,6 +144,22 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingPage />}>
         <AlgorithmTagListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/algorithms/tags/:id/update',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <AlgorithmTagUpdatePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/users',
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <UserListPage />
       </Suspense>
     ),
   },

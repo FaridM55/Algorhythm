@@ -51,7 +51,10 @@ const AlgorithmListPage = () => {
                         Test əlavə et
                       </button>
 
-                      <button className='btn btn-warning' disabled onClick={() => {}}>
+                      <button
+                        className='btn btn-warning'
+                        onClick={() => navigate(`/admin/algorithms/${params.row.id}/update`)}
+                      >
                         Redaktə et
                       </button>
 

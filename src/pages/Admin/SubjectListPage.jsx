@@ -43,7 +43,10 @@ const SubjectListPage = () => {
                 renderCell: (params) => {
                   return (
                     <div className='d-flex align-items-center' style={{ gap: 10, marginTop: 5 }}>
-                      <button className='btn btn-warning' disabled onClick={() => {}}>
+                      <button
+                        className='btn btn-warning'
+                        onClick={() => navigate(`/admin/subjects/${params.row.subjectId}/update`)}
+                      >
                         Redaktə et
                       </button>
 
