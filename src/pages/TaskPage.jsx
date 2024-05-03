@@ -101,24 +101,6 @@ const TaskPage = () => {
           <div className='info-card card p-5'>
             <h2 className='text-warning'>Təsvir</h2>
             <p dangerouslySetInnerHTML={{ __html: data?.problemStatement }} />
-            {data?.testCases?.length > 0 && (
-              <>
-                <h2 className='text-warning mt-2'>Giriş verilənləri</h2>
-                {data?.testCases.map((testCase, index) => (
-                  <p key={index} dangerouslySetInnerHTML={{ __html: testCase?.testCase }} />
-                ))}
-                <h2 className='text-warning mt-2'>Çıxış verilənləri</h2>
-                {data?.testCases.map((testCase, index) => (
-                  <p key={index} dangerouslySetInnerHTML={{ __html: testCase?.correctAnswer }} />
-                ))}
-              </>
-            )}
-            {data?.constraints?.length > 0 && (
-              <>
-                <h2 className='text-warning'>Məhdudiyyətlər</h2>
-                <p dangerouslySetInnerHTML={{ __html: data?.constraints }} />
-              </>
-            )}
           </div>
         </div>
         <div className='col-md-6 mt-2'>
